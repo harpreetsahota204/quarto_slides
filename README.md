@@ -14,29 +14,45 @@ Turn any Jupyter notebook into a branded Reveal.js presentation with the Voxel51
 
 Generated files (`*_slides.ipynb`, `*_slides.html`, `*_slides_files/`) are gitignored.
 
-## Install Quarto
+## Install Quarto (one-time, system-wide)
 
-Download the latest release for your platform from
-[github.com/quarto-dev/quarto-cli/releases](https://github.com/quarto-dev/quarto-cli/releases).
+Install Quarto globally so it's available from any project.
 
-For **linux-arm64** (e.g. this machine):
+### Linux (arm64)
 
 ```bash
-# From the repo root
-curl -L -o quarto-dist.tar.gz \
+curl -L -o quarto.tar.gz \
   https://github.com/quarto-dev/quarto-cli/releases/download/v1.9.36/quarto-1.9.36-linux-arm64.tar.gz
-mkdir -p .quarto-cli
-tar -xzf quarto-dist.tar.gz --strip-components=1 -C .quarto-cli
-rm quarto-dist.tar.gz
+sudo mkdir -p /usr/local/quarto
+sudo tar -xzf quarto.tar.gz --strip-components=1 -C /usr/local/quarto
+sudo ln -sf /usr/local/quarto/bin/quarto /usr/local/bin/quarto
+rm quarto.tar.gz
+```
+
+### Linux (x86_64)
+
+```bash
+curl -L -o quarto.tar.gz \
+  https://github.com/quarto-dev/quarto-cli/releases/download/v1.9.36/quarto-1.9.36-linux-amd64.tar.gz
+sudo mkdir -p /usr/local/quarto
+sudo tar -xzf quarto.tar.gz --strip-components=1 -C /usr/local/quarto
+sudo ln -sf /usr/local/quarto/bin/quarto /usr/local/bin/quarto
+rm quarto.tar.gz
+```
+
+### macOS
+
+```bash
+brew install quarto
 ```
 
 Verify it works:
 
 ```bash
-.quarto-cli/bin/quarto --version
+quarto --version
 ```
 
-The script expects Quarto at `../.quarto-cli/bin/quarto` (one level up from this folder).
+See [github.com/quarto-dev/quarto-cli/releases](https://github.com/quarto-dev/quarto-cli/releases) for other platforms and newer versions.
 
 ## Usage
 

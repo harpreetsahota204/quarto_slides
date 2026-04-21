@@ -14,9 +14,15 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-QUARTO="${REPO_ROOT}/.quarto-cli/bin/quarto"
 
-[[ -x "$QUARTO" ]] || { echo "Error: Quarto not found at ${QUARTO}"; echo "Download from https://github.com/quarto-dev/quarto-cli/releases"; exit 1; }
+if command -v quarto &>/dev/null; then
+  QUARTO="quarto"
+elif [[ -x "${REPO_ROOT}/.quarto-cli/bin/quarto" ]]; then
+  QUARTO="${REPO_ROOT}/.quarto-cli/bin/quarto"
+else
+  echo "Error: quarto not found. Install it system-wide — see README.md"
+  exit 1
+fi
 
 # ── Parse args ──────────────────────────────────────────────────────
 NOTEBOOK=""
