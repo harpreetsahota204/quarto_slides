@@ -1,0 +1,243 @@
+/*-- scss:defaults --*/
+
+// Voxel51 Style Guide 3.0 — Color Palette
+$voxel-orange:       #FF6D04;
+$primary-blue:       #499CEF;
+$primary-purple:     #B681FF;
+$primary-green:      #59A65C;
+$primary-yellow:     #FFEB52;
+$secondary-purple:   #DABFFF;
+$secondary-yellow:   #FFF5A8;
+$secondary-orange:   #FFB682;
+$secondary-blue:     #A4CDF7;
+$secondary-green:    #ACD2AD;
+$dark-gray:          #212529;
+$mid-gray:           #A6A7A9;
+$light-gray:         #E8E9E9;
+
+// Reveal.js theme variables
+$backgroundColor:    $dark-gray;
+$mainColor:          $light-gray;
+$headingColor:       white;
+$linkColor:          #BC8CFF;
+$linkColorHover:     $secondary-purple;
+$selectionBackgroundColor: rgba($voxel-orange, 0.4);
+$selectionColor:     white;
+
+// Typography — Palanquin (fallback Inter, system sans)
+@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+$mainFont:           'Palanquin', 'Inter', system-ui, sans-serif;
+$headingFont:        'Palanquin', 'Inter', system-ui, sans-serif;
+$codeFont:           'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+$mainFontSize:       28px;
+$headingTextTransform: none;
+$headingLetterSpacing: -0.02em;
+$headingLineHeight:  1.15;
+
+$heading1Size:       2.2em;
+$heading2Size:       1.6em;
+$heading3Size:       1.3em;
+$heading4Size:       1.1em;
+
+$heading1Weight:     700;
+$heading2Weight:     600;
+$heading3Weight:     500;
+$heading4Weight:     500;
+
+// Code blocks
+$code-block-bg:      lighten($dark-gray, 6%);
+$code-block-border-color: rgba($mid-gray, 0.25);
+
+/*-- scss:rules --*/
+
+// Voxel51 logo watermark — bottom-right of every slide (style guide p.7)
+.reveal .slide-logo {
+  display: block !important;
+  position: fixed !important;
+  bottom: 16px !important;
+  right: 20px !important;
+  left: auto !important;
+  top: auto !important;
+  max-height: 36px !important;
+  width: auto !important;
+  opacity: 0.7;
+  z-index: 100;
+  pointer-events: none;
+}
+
+// Title slide
+#title-slide {
+  text-align: left;
+  padding-left: 60px;
+
+  h1.title {
+    color: $voxel-orange;
+    font-weight: 700;
+    font-size: 2.4em;
+    border-bottom: 4px solid $voxel-orange;
+    padding-bottom: 0.2em;
+    display: inline-block;
+  }
+}
+
+// Section separator slides (h1, h2)
+.reveal .slide-background-content {
+  background-color: $dark-gray;
+}
+
+.reveal h1 {
+  color: $voxel-orange;
+  font-weight: $heading1Weight;
+}
+
+.reveal h2 {
+  color: $voxel-orange;
+  font-weight: $heading2Weight;
+}
+
+.reveal h3 {
+  color: $voxel-orange;
+  font-weight: $heading3Weight;
+}
+
+.reveal h4, .reveal h5 {
+  color: $secondary-orange;
+  font-weight: $heading4Weight;
+}
+
+// Body text
+.reveal p, .reveal li {
+  color: $light-gray;
+  line-height: 1.5;
+}
+
+// Bold text — green accent
+.reveal strong, .reveal b {
+  color: #59A65C;
+  font-weight: 600;
+}
+
+// Inline code
+.reveal code {
+  color: #ECD000;
+  background: rgba(#ECD000, 0.08);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+  font-size: 0.85em;
+}
+
+// Code blocks
+.reveal pre {
+  background: $code-block-bg;
+  border: 1px solid $code-block-border-color;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  code {
+    background: transparent;
+    color: $light-gray;
+    padding: 0;
+    font-size: 0.7em;
+    line-height: 1.45;
+  }
+}
+
+// Blockquotes
+.reveal blockquote {
+  border-left: 4px solid $voxel-orange;
+  background: rgba($voxel-orange, 0.06);
+  padding: 0.8em 1.2em;
+  border-radius: 0 6px 6px 0;
+  font-style: normal;
+  color: $mid-gray;
+  width: 90%;
+
+  p {
+    color: $mid-gray;
+  }
+}
+
+// Tables
+.reveal table {
+  border-collapse: collapse;
+  margin: 1em auto;
+  font-size: 0.75em;
+
+  th {
+    background: $voxel-orange;
+    color: white;
+    font-weight: 600;
+    padding: 0.5em 0.8em;
+    border: none;
+  }
+
+  td {
+    padding: 0.4em 0.8em;
+    border-bottom: 1px solid rgba($mid-gray, 0.25);
+    color: $light-gray;
+  }
+
+  tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+// Links
+.reveal a {
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(#BC8CFF, 0.5);
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color: $secondary-purple;
+    border-bottom-color: $secondary-purple;
+  }
+}
+
+// Lists — orange bullets
+.reveal ul {
+  list-style: disc;
+
+  li {
+    &::marker {
+      color: $voxel-orange;
+    }
+  }
+}
+
+.reveal ol li::marker {
+  color: $voxel-orange;
+  font-weight: 600;
+}
+
+// Pandoc wraps loose-list items in <p> tags; collapse them so
+// bullets and text stay on the same line.
+.reveal .slides li > p {
+  display: inline !important;
+  margin: 0 !important;
+}
+
+// Slide number
+.reveal .slide-number {
+  color: $mid-gray;
+  font-size: 0.65em;
+}
+
+// Footer / watermark area
+.reveal .footer {
+  color: $mid-gray;
+  font-size: 0.55em;
+}
+
+// Progress bar
+.reveal .progress span {
+  background: $voxel-orange;
+}
+
+// Scrollbar for scrollable slides
+.reveal ::-webkit-scrollbar-thumb {
+  background: rgba($voxel-orange, 0.4);
+  border-radius: 4px;
+}
